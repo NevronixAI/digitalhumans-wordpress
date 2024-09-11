@@ -17,19 +17,13 @@ Elevate customer engagement with NevronixAI’s lifelike, AI-powered Digital Hum
 
 Digital Humans provide scalable customer support when people cannot. They represent your brand online, communicating with customers in real-time, boosting confidence in their purchases. Available 24/7, 365 days a year, and fluent in over 140 languages, NevronixAI Digital Humans are always ready to assist. 
 
-
 NevronixAI Digital Humans can be used for the following purposes:
-
-Onboard, support, and educate consumers
-Recommend and upsell products
-Handle customer inquiries and complaints
-Deliver personalized and engaging user experiences
-Capture valuable user insights through targeted conversations
-Customize your own use case by uploading knowledge data to your Digital Human during the setup process at www.nevronix.ai
-This plugin interacts with the following servers to provide the Digital Human functionality:
-https://platform.nevronix.ai
-
-
+- Onboard, support, and educate consumers
+- Recommend and upsell products
+- Handle customer inquiries and complaints
+- Deliver personalized and engaging user experiences
+- Capture valuable user insights through targeted conversations
+- Customize your own use case by uploading knowledge data to your Digital Human during the setup process at www.nevronix.ai
 
 By using this plugin, you can easily integrate a NevronixAI Digital Human into your site. To get started, create an account at https://nevronix.ai/pricing/ to build your Digital Human and obtain the necessary API credentials.
 
@@ -44,13 +38,17 @@ After signing up, follow these simple steps to create your custom Digital Human 
 3.Name your Digital Human.
 4.Select supported languages and voices.
 5.Set up knowledge and additional settings (e.g., connect to OpenAI or custom LLM).
-
 6.Once your Digital Human is ready, copy the API URL and paste it into the NevronixAI Digital Human plugin settings page(Settings->Digital Humans - NevronixAI).
 7.Paste your API URL. 
-8.Choose the pages where you want the Digital Human to appear,
+8.Select the pages where you want the Digital Human to appear,
 9.You can customize the container size and set a delay for when the plugin appears on the page.
+10.Click "Save" 
 
-Then click "Save." Your custom-made Digital Human will now be active on your website.
+Your custom-made Digital Human will now be active on your website.
+
+This plugin interacts with the following servers to provide the Digital Human functionality:
+https://platform.nevronix.ai
+
 
 = Frequently Asked Questions ==
 

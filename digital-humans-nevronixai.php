@@ -19,9 +19,9 @@ register_activation_hook(__FILE__, 'nevronixai_plugin_activate');
 function nevronixai_plugin_activate() {
     add_option('nevronixai_plugin_settings', array(
         'api_url' => '',
-        'iframe_width' => '400',
-        'iframe_height' => '400',
-        'show_after_seconds' => '10',
+        'iframe_width' => '500',
+        'iframe_height' => '500',
+        'show_after_seconds' => '5',
         'selected_items' => array() // Store selected pages, posts, dynamic pages, or 'home'
     ));
 }
