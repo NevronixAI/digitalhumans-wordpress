@@ -1,6 +1,6 @@
 === Digital Humans - NevronixAI ===
 Contributors: nevronixai
-Tags: digitalhumans,avatar,aiassistant,assistant,chatbot,bot,ai,llm,openai
+Tags: digitalhumans,avatar,assistant,ai,chatbot
 Requires at least: 5.8
 Tested up to: 6.6
 Stable tag: 1.0
@@ -8,14 +8,14 @@ Requires PHP: 7.2
 License: GPLv2
 
 
-Nevronix - the Face of Ai. 
-Combat low engagement, poor conversion, and weak retention with real-time, interactive digital humans crafted for personalized 1:1 conversations at scale. With this plugin you can add NevronixAI Digital humans to your website. 
+Nevronix - the Face of AI. Combat low engagement and poor conversion with real-time, interactive digital humans.
 
 == Description ==
-Elevate customer engagement with NevronixAI’s lifelike, AI-powered virtual avatars. These Digital Humans interact naturally with your website visitors, delivering premium, face-to-face experiences that foster deeper connections. 
+
+
+Elevate customer engagement with NevronixAI’s lifelike, AI-powered Digital Humans(Avatars). These Digital Humans interact naturally with your website visitors, delivering premium, face-to-face experiences that foster deeper connections. 
 
 Digital Humans provide scalable customer support when people cannot. They represent your brand online, communicating with customers in real-time, boosting confidence in their purchases. Available 24/7, 365 days a year, and fluent in over 140 languages, NevronixAI Digital Humans are always ready to assist. 
-
 
 
 NevronixAI Digital Humans can be used for the following purposes:
