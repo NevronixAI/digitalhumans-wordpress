@@ -94,30 +94,28 @@ function nevronixai_plugin_settings_page() {
                     <th scope="row">Show After (seconds)</th>
                     <td><input type="text" name="nevronixai_plugin_settings[show_after_seconds]" value="<?php echo esc_attr($settings['show_after_seconds']); ?>" size="5"></td>
                 </tr>
-                <tr valign="top">
-                    <th scope="row">Select the pages where the plugin should be displayed. Hold Shift and click to select multiple pages.</th>
+               <tr valign="top">
+                    <th scope="row">Select the pages where the plugin should be displayed:</th>
                     <td>
-                        <select name="nevronixai_plugin_settings[selected_items][]" multiple="multiple" size="15">
-                            <?php
-                            // Add option for the homepage
-                            $selected_home = in_array('home', $settings['selected_items']) ? 'selected="selected"' : '';
-                            echo '<option value="home" ' . esc_attr( $selected_home ) . '>Home Page</option>';
+                        <?php
+                        // Add option for the homepage
+                        $selected_home = in_array('home', $settings['selected_items']) ? 'checked' : '';
+                        echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="home" ' . esc_attr($selected_home) . '> Home Page</label><br>';
 
-                            // Fetch all pages
-                            $pages = get_pages();
-                            foreach ($pages as $page) {
-                                $selected = in_array($page->ID, $settings['selected_items']) ? 'selected="selected"' : '';
-                                echo '<option value="' . esc_attr( $page->ID ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $page->post_title ) . ' (Page)</option>';
-                            }
+                        // Fetch all pages
+                        $pages = get_pages();
+                        foreach ($pages as $page) {
+                            $selected = in_array($page->ID, $settings['selected_items']) ? 'checked' : '';
+                            echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($page->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($page->post_title) . ' (Page)</label><br>';
+                        }
 
-                            // Fetch all posts
-                            $posts = get_posts(array('numberposts' => -1)); // No limit
-                            foreach ($posts as $post) {
-                                $selected = in_array($post->ID, $settings['selected_items']) ? 'selected="selected"' : '';
-                                echo '<option value="' . esc_attr( $post->ID ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $post->post_title ) . ' (Post)</option>';
-                            }
-                            ?>
-                        </select>
+                        // Fetch all posts
+                        $posts = get_posts(array('numberposts' => -1)); // No limit
+                        foreach ($posts as $post) {
+                            $selected = in_array($post->ID, $settings['selected_items']) ? 'checked' : '';
+                            echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($post->post_title) . ' (Post)</label><br>';
+                        }
+                        ?>
                     </td>
                 </tr>
             </table>
