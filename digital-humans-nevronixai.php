@@ -15,9 +15,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Register activation hook to initialize settings.
-register_activation_hook(__FILE__, 'custom_iframe_plugin_activate');
-function custom_iframe_plugin_activate() {
-    add_option('custom_iframe_plugin_settings', array(
+register_activation_hook(__FILE__, 'nevronixai_plugin_activate');
+function nevronixai_plugin_activate() {
+    add_option('nevronixai_plugin_settings', array(
         'api_url' => '',
         'iframe_width' => '400',
         'iframe_height' => '400',
@@ -27,45 +27,45 @@ function custom_iframe_plugin_activate() {
 }
 
 // Register deactivation hook to clean up settings.
-register_deactivation_hook(__FILE__, 'custom_iframe_plugin_deactivate');
-function custom_iframe_plugin_deactivate() {
-    delete_option('custom_iframe_plugin_settings');
+register_deactivation_hook(__FILE__, 'nevronixai_plugin_deactivate');
+function nevronixai_plugin_deactivate() {
+    delete_option('nevronixai_plugin_settings');
 }
 
 // Add a menu item in the admin dashboard.
-add_action('admin_menu', 'custom_iframe_plugin_menu');
-function custom_iframe_plugin_menu() {
-    add_options_page('Digital Humans - NevronixAI Settings', 'Digital Humans - NevronixAI', 'manage_options', 'custom-iframe-plugin', 'custom_iframe_plugin_settings_page');
+add_action('admin_menu', 'nevronixai_plugin_menu');
+function nevronixai_plugin_menu() {
+    add_options_page('Digital Humans - NevronixAI Settings', 'Digital Humans - NevronixAI', 'manage_options', 'nevronixai-plugin', 'nevronixai_plugin_settings_page');
 }
 
 // Display the settings page.
-function custom_iframe_plugin_settings_page() {
-    if (isset($_POST['custom_iframe_plugin_settings']) && check_admin_referer('custom_iframe_plugin_update_options')) {
+function nevronixai_plugin_settings_page() {
+    if (isset($_POST['nevronixai_plugin_settings']) && check_admin_referer('nevronixai_plugin_update_options')) {
         $settings = array(
-            'api_url' => isset($_POST['custom_iframe_plugin_settings']['api_url']) 
-                ? sanitize_text_field(wp_unslash($_POST['custom_iframe_plugin_settings']['api_url'])) 
+            'api_url' => isset($_POST['nevronixai_plugin_settings']['api_url']) 
+                ? sanitize_text_field(wp_unslash($_POST['nevronixai_plugin_settings']['api_url'])) 
                 : '',
-            'iframe_width' => isset($_POST['custom_iframe_plugin_settings']['iframe_width']) 
-                ? absint(wp_unslash($_POST['custom_iframe_plugin_settings']['iframe_width'])) 
+            'iframe_width' => isset($_POST['nevronixai_plugin_settings']['iframe_width']) 
+                ? absint(wp_unslash($_POST['nevronixai_plugin_settings']['iframe_width'])) 
                 : 0,
-            'iframe_height' => isset($_POST['custom_iframe_plugin_settings']['iframe_height']) 
-                ? absint(wp_unslash($_POST['custom_iframe_plugin_settings']['iframe_height'])) 
+            'iframe_height' => isset($_POST['nevronixai_plugin_settings']['iframe_height']) 
+                ? absint(wp_unslash($_POST['nevronixai_plugin_settings']['iframe_height'])) 
                 : 0,
-            'show_after_seconds' => isset($_POST['custom_iframe_plugin_settings']['show_after_seconds']) 
-                ? absint(wp_unslash($_POST['custom_iframe_plugin_settings']['show_after_seconds'])) 
+            'show_after_seconds' => isset($_POST['nevronixai_plugin_settings']['show_after_seconds']) 
+                ? absint(wp_unslash($_POST['nevronixai_plugin_settings']['show_after_seconds'])) 
                 : 0,
-            'selected_items' => isset($_POST['custom_iframe_plugin_settings']['selected_items']) && is_array($_POST['custom_iframe_plugin_settings']['selected_items']) 
-                ? array_map('sanitize_text_field', wp_unslash($_POST['custom_iframe_plugin_settings']['selected_items'])) 
+            'selected_items' => isset($_POST['nevronixai_plugin_settings']['selected_items']) && is_array($_POST['nevronixai_plugin_settings']['selected_items']) 
+                ? array_map('sanitize_text_field', wp_unslash($_POST['nevronixai_plugin_settings']['selected_items'])) 
                 : array()
         );
 
 
-        update_option('custom_iframe_plugin_settings', $settings);
+        update_option('nevronixai_plugin_settings', $settings);
 
         echo '<div class="updated"><p>Settings saved.</p></div>';
     }
 
-    $settings = get_option('custom_iframe_plugin_settings');
+    $settings = get_option('nevronixai_plugin_settings');
     ?>
     <div class="wrap">
         <div style="position: absolute; ">
@@ -76,28 +76,28 @@ function custom_iframe_plugin_settings_page() {
             </br>
         <h1>NevronixAI Settings</h1>
         <form method="post" action="">
-            <?php wp_nonce_field('custom_iframe_plugin_update_options'); ?>
+            <?php wp_nonce_field('nevronixai_plugin_update_options'); ?>
             <table class="form-table">
                 <tr valign="top">
                     <th scope="row">API URL</th>
-                    <td><input type="text" name="custom_iframe_plugin_settings[api_url]" value="<?php echo esc_attr($settings['api_url']); ?>" size="100"></td>
+                    <td><input type="text" name="nevronixai_plugin_settings[api_url]" value="<?php echo esc_attr($settings['api_url']); ?>" size="100"></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Width (px)</th>
-                    <td><input type="text" name="custom_iframe_plugin_settings[iframe_width]" value="<?php echo esc_attr($settings['iframe_width']); ?>" size="5"></td>
+                    <td><input type="text" name="nevronixai_plugin_settings[iframe_width]" value="<?php echo esc_attr($settings['iframe_width']); ?>" size="5"></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Height (px)</th>
-                    <td><input type="text" name="custom_iframe_plugin_settings[iframe_height]" value="<?php echo esc_attr($settings['iframe_height']); ?>" size="5"></td>
+                    <td><input type="text" name="nevronixai_plugin_settings[iframe_height]" value="<?php echo esc_attr($settings['iframe_height']); ?>" size="5"></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Show After (seconds)</th>
-                    <td><input type="text" name="custom_iframe_plugin_settings[show_after_seconds]" value="<?php echo esc_attr($settings['show_after_seconds']); ?>" size="5"></td>
+                    <td><input type="text" name="nevronixai_plugin_settings[show_after_seconds]" value="<?php echo esc_attr($settings['show_after_seconds']); ?>" size="5"></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Select the pages where the plugin should be displayed. Hold Shift and click to select multiple pages.</th>
                     <td>
-                        <select name="custom_iframe_plugin_settings[selected_items][]" multiple="multiple" size="15">
+                        <select name="nevronixai_plugin_settings[selected_items][]" multiple="multiple" size="15">
                             <?php
                             // Add option for the homepage
                             $selected_home = in_array('home', $settings['selected_items']) ? 'selected="selected"' : '';
@@ -130,9 +130,9 @@ function custom_iframe_plugin_settings_page() {
 }
 
 // Insert the iframe into the selected pages, posts, or homepage.
-add_action('wp_footer', 'custom_iframe_plugin_insert_iframe');
-function custom_iframe_plugin_insert_iframe() {
-    $settings = get_option('custom_iframe_plugin_settings');
+add_action('wp_footer', 'nevronixai_plugin_insert_iframe');
+function nevronixai_plugin_insert_iframe() {
+    $settings = get_option('nevronixai_plugin_settings');
 
     // Check if the current page/post/homepage is selected for the iframe
     if (is_front_page() && in_array('home', $settings['selected_items']) ||
