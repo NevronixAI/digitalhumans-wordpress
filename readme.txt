@@ -7,8 +7,8 @@ Stable tag: 1.0
 Requires PHP: 7.2
 License: GPLv2
 
-
 Nevronix - the Face of AI. Combat low engagement and poor conversion with real-time, interactive digital humans.
+
 
 == Description ==
 
@@ -26,7 +26,6 @@ NevronixAI Digital Humans can be used for the following purposes:
 - Customize your own use case by uploading knowledge data to your Digital Human during the setup process at www.nevronix.ai
 
 By using this plugin, you can easily integrate a NevronixAI Digital Human into your site. To get started, create an account at https://nevronix.ai/pricing/ to build your Digital Human and obtain the necessary API credentials.
-
 
 Please refer to relevant Terms of Use related to NevronixAI Digital Human service.
 Terms and Conditions: https://platform.nevronix.ai:3000/terms-and-conditions
@@ -50,7 +49,15 @@ This plugin interacts with the following servers to provide the Digital Human fu
 https://platform.nevronix.ai
 
 
-= Frequently Asked Questions ==
+== Screenshots ==
+1. Registration process at https://nevronix.ai 
+2. Creation and configuration of the Digital Human at https://platform.nevronix.ai:3000/
+3. Plugin admin dashboard with Digital Human configuration
+4. Digital Human as appearing on a website
+5. Digital Human as appearing on a mobile
+
+
+== Frequently Asked Questions ==
 
 = Do I need to register with NevronixAI before adding a Digital Human to my website?
 Yes, you must register at https://nevronix.ai/pricing and create your Digital Human to obtain the keys necessary for configuration on your website.
@@ -69,6 +76,7 @@ Yes, this is possible as an advanced feature. Please contact hi@nevronix.ai to g
 
 = Can I use self hosted LLM?
 Yes, you can. Please contact hi@nevronix.ai and we will help you integrate your LLM in our platform. 
+
 
 == Changelog ==
 
