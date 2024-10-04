@@ -16,6 +16,13 @@
 
 ## Description
 
+The best way to Download and Install this plugin is to go to WordPress Plugins website: 
+[https://wordpress.org/plugins/digital-humans-nevronixai/](https://wordpress.org/plugins/digital-humans-nevronixai/) 
+
+
+
+Plugin overview: 
+ 
 Elevate customer engagement with NevronixAI’s lifelike, AI-powered Digital Humans (Avatars). These Digital Humans interact naturally with your WordPress website visitors, delivering premium, face-to-face experiences that foster deeper connections.
 
 Digital Humans provide scalable customer support when people cannot. They represent your brand online, communicating with customers in real-time, boosting confidence in their purchases. Available 24/7, 365 days a year, and fluent in over 140 languages, NevronixAI Digital Humans are always ready to assist.
@@ -31,7 +38,7 @@ Digital Humans provide scalable customer support when people cannot. They repres
 By using this plugin, you can easily integrate a NevronixAI Digital Human into your WordPress site. To get started, create an account at [https://nevronix.ai/pricing/](https://nevronix.ai/pricing/) to build your Digital Human and obtain the necessary API credentials.
 
 Please refer to relevant Terms of Use related to NevronixAI Digital Human service.  
-Terms and Conditions: [https://platform.nevronix.ai:3000/terms-and-conditions](https://platform.nevronix.ai:3000/terms-and-conditions)
+Terms and Conditions: [here](https://platform.nevronix.ai:3000/terms-and-conditions)
 
 After signing up, follow these simple steps to create your custom Digital Human in NevronixAI Digital Humans Platform ([www/platform.nevronix.ai:3000](http://www/platform.nevronix.ai:3000)) (no technical knowledge required):
 
@@ -48,7 +55,7 @@ After signing up, follow these simple steps to create your custom Digital Human 
 Your custom-made Digital Human will now be active on your website.
 
 This plugin interacts with the following servers to provide the Digital Human functionality:  
-[https://platform.nevronix.ai](https://platform.nevronix.ai)
+[https://platform.nevronix.ai](https://platform.nevronix.ai:3000/)
 
 ---
 
