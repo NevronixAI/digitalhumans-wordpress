@@ -22,9 +22,9 @@ register_activation_hook(__FILE__, 'nevronixai_plugin_activate');
 function nevronixai_plugin_activate() {
     add_option('nevronixai_plugin_settings', array(
         'api_url' => '',
-        'iframe_width' => '517',
-        'iframe_height' => '517',
-        'show_after_seconds' => '5',
+        'iframe_width' => '340',
+        'iframe_height' => '340',
+        'show_after_seconds' => '1',
         'selected_items' => array() // Store selected pages, posts, dynamic pages, or 'home'
     ));
 }
@@ -60,8 +60,38 @@ function nevronixai_plugin_admin_enqueue_styles($hook) {
         .nevronix-logo {
             width: 200px;
         }
+        /* Added CSS for jQuery UI Tabs */
+        #nevronixai-tabs { margin-top: 20px; }
+        #nevronixai-tabs ul { list-style: none; margin: 0; padding: 0; }
+        #nevronixai-tabs ul li { display: inline-block; margin-right: 5px; }
+        #nevronixai-tabs ul li a { padding: 10px 15px; background: #eee; border: 1px solid #ccc; border-bottom: none; text-decoration: none; }
+        #nevronixai-tabs .ui-tabs-active a { background: #fff; border-bottom: 1px solid #fff; }
+        .tab-content { padding: 20px; border: 1px solid #ccc; background: #fff; }
     ';
     wp_add_inline_style('nevronixai-plugin-admin-style', $custom_css);
+
+    // Enqueue jQuery UI Tabs and initialize the tabs
+    wp_enqueue_script('jquery-ui-tabs');
+      $custom_js = '
+            jQuery(document).ready(function($) {
+                var activeTab = localStorage.getItem("nevronixaiActiveTab");
+                if (activeTab) {
+                    $("#nevronixai-tabs").tabs({ active: parseInt(activeTab) });
+                } else {
+                    $("#nevronixai-tabs").tabs();
+                }
+
+                $("#nevronixai-tabs").on("tabsactivate", function(event, ui) {
+                    localStorage.setItem("nevronixaiActiveTab", ui.newTab.index());
+                });
+
+                // Ensure smooth scroll remains disabled after reload
+                $("form").submit(function() {
+                    localStorage.setItem("nevronixaiActiveTab", $("#nevronixai-tabs").tabs("option", "active"));
+                });
+            });
+        ';
+        wp_add_inline_script("jquery-ui-tabs", $custom_js);
 }
 
 // Display the settings page.
@@ -97,55 +127,85 @@ function nevronixai_plugin_settings_page() {
             <img src="<?php echo esc_url( plugin_dir_url(__FILE__) . 'img/logo.png' ); ?>" alt="Plugin Logo" class="nevronix-logo">
         </div>
         <br><br><br>
-        <h1>NevronixAI Settings</h1>
-        <form method="post" action="">
-            <?php wp_nonce_field('nevronixai_plugin_update_options'); ?>
-            <table class="form-table">
-                <tr valign="top">
-                    <th scope="row">API URL</th>
-                    <td><input type="text" name="nevronixai_plugin_settings[api_url]" value="<?php echo esc_attr($settings['api_url']); ?>" size="100"></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Width (px)</th>
-                    <td><input type="text" name="nevronixai_plugin_settings[iframe_width]" value="<?php echo esc_attr($settings['iframe_width']); ?>" size="5"></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Height (px)</th>
-                    <td><input type="text" name="nevronixai_plugin_settings[iframe_height]" value="<?php echo esc_attr($settings['iframe_height']); ?>" size="5"></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Show After (seconds)</th>
-                    <td><input type="text" name="nevronixai_plugin_settings[show_after_seconds]" value="<?php echo esc_attr($settings['show_after_seconds']); ?>" size="5"></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Select the pages where the plugin should be displayed:</th>
-                    <td>
-                        <?php
-                        // Add option for the homepage
-                        $selected_home = in_array('home', $settings['selected_items']) ? 'checked' : '';
-                        echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="home" ' . esc_attr($selected_home) . '> Home Page</label><br>';
+           
+        <!-- Start of Tabbed Interface -->
+        <div id="nevronixai-tabs">
+            <ul>
+                 <li><a href="#tab-register">Step 1: Create FREE account</a></li>
+                  
+                <li><a href="#tab-video">Step 2: Watch the Getting Started Video</a></li>
+                <li><a href="#tab-create">Step 3: Create/Edit your Digital Humans</a></li>
+              
+                <li><a href="#tab-integration">Step 4: Integration in WordPress</a></li>
+            </ul>
+            <!-- Tab Content for Step 1: Configuration Video -->
+            <div id="tab-video" class="tab-content">
+                <p>Please watch the video below for a step-by-step guide on setting up your Digital Human.</p>
+                <iframe src="https://www.loom.com/embed/016f91960bf940119e9259e21d85e23c" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Tab Content for Step 2: Registration -->
+            <div id="tab-register" class="tab-content">
+             
+                <iframe src="https://platform.nevronix.ai:3000/register" width="100%" height="800px" frameborder="0" style="border:none;"></iframe>
+            </div>
+            
+            <div id="tab-create" class="tab-content">
+                <p>Login and Create your first Digital Human in less than 5 minutes</p>
+                <iframe src="https://platform.nevronix.ai:3000/" width="100%" height="800px" frameborder="0" style="border:none;"></iframe>
+            </div>
+            <!-- Tab Content for Integration (Original Settings Form) -->
+            <div id="tab-integration" class="tab-content">
+                <form method="post" action="">
+                    <?php wp_nonce_field('nevronixai_plugin_update_options'); ?>
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row">API URL</th>
+                            <td><input type="text" name="nevronixai_plugin_settings[api_url]" value="<?php echo esc_attr($settings['api_url']); ?>" size="100"></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Width (px)</th>
+                            <td><input type="text" name="nevronixai_plugin_settings[iframe_width]" value="<?php echo esc_attr($settings['iframe_width']); ?>" size="5"></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Height (px)</th>
+                            <td><input type="text" name="nevronixai_plugin_settings[iframe_height]" value="<?php echo esc_attr($settings['iframe_height']); ?>" size="5"></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Show After (seconds)</th>
+                            <td><input type="text" name="nevronixai_plugin_settings[show_after_seconds]" value="<?php echo esc_attr($settings['show_after_seconds']); ?>" size="5"></td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">Select the pages where the plugin should be displayed:</th>
+                            <td>
+                                <?php
+                                // Add option for the homepage
+                                $selected_home = in_array('home', $settings['selected_items']) ? 'checked' : '';
+                                echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="home" ' . esc_attr($selected_home) . '> Home Page</label><br>';
 
-                        // Fetch all pages
-                        $pages = get_pages();
-                        foreach ($pages as $page) {
-                            $selected = in_array($page->ID, $settings['selected_items']) ? 'checked' : '';
-                            echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($page->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($page->post_title) . ' (Page)</label><br>';
-                        }
+                                // Fetch all pages
+                                $pages = get_pages();
+                                foreach ($pages as $page) {
+                                    $selected = in_array($page->ID, $settings['selected_items']) ? 'checked' : '';
+                                    echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($page->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($page->post_title) . ' (Page)</label><br>';
+                                }
 
-                        // Fetch all posts
-                        $posts = get_posts(array('numberposts' => -1)); // No limit
-                        foreach ($posts as $post) {
-                            $selected = in_array($post->ID, $settings['selected_items']) ? 'checked' : '';
-                            echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($post->post_title) . ' (Post)</label><br>';
-                        }
-                        ?>
-                    </td>
-                </tr>
-            </table>
-            <p class="submit">
-                <input type="submit" class="button-primary" value="Save Changes">
-            </p>
-        </form>
+                                // Fetch all posts
+                                $posts = get_posts(array('numberposts' => -1)); // No limit
+                                foreach ($posts as $post) {
+                                    $selected = in_array($post->ID, $settings['selected_items']) ? 'checked' : '';
+                                    echo '<label><input type="checkbox" name="nevronixai_plugin_settings[selected_items][]" value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '> ' . esc_html($post->post_title) . ' (Post)</label><br>';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="submit">
+                        <input type="submit" class="button-primary" value="Save Changes">
+                    </p>
+                </form>
+            </div>
+        </div>
+        <!-- End of Tabbed Interface -->
     </div>
     <?php
 }

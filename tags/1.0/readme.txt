@@ -2,7 +2,7 @@
 Contributors: nevronixai
 Tags: digitalhumans,avatar,assistant,ai,chatbot
 Requires at least: 5.8
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: 1.0
 Requires PHP: 7.2
 License: GPLv2
@@ -12,10 +12,12 @@ Nevronix – the Face of AI. Combat low engagement and poor conversion with real
 
 == Description ==
 
+[Watch our demo video](https://www.loom.com/share/016f91960bf940119e9259e21d85e23c)
 
 Elevate customer engagement with NevronixAI’s lifelike, AI-powered Digital Humans(Avatars). These Digital Humans interact naturally with your website visitors, delivering premium, face-to-face experiences that foster deeper connections. 
 
 Digital Humans provide scalable customer support when people cannot. They represent your brand online, communicating with customers in real-time, boosting confidence in their purchases. Available 24/7, 365 days a year, and fluent in over 140 languages, NevronixAI Digital Humans are always ready to assist. 
+
 
 NevronixAI Digital Humans can be used for the following purposes:
 – Onboard, support, and educate consumers
@@ -85,3 +87,8 @@ Yes, you can. Please contact hi@nevronix.ai and we will help you integrate your 
 
 = 1.0 
 * First Release.
+
+== Upgrade Notice ==
+
+= 1.0 =
+Initial release.
